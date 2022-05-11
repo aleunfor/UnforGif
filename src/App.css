@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+:root{
+  --black: #43494A;
+  --green: #8AE6A4;
+  --skyblue: #B6DFE3;
+  --blue: #1B1A75;
+  --white:  #ffF;
+  --violet: #9B99FF;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color:var(--white);
+}
+
+body{
+  background: var(--blue)!important;
+  font-family: 'Poppins', sans-serif!important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-content {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: var(--black);
+}
+
+.gifbox {
+  background: transparent;
+  padding: 0px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  border: 3px solid transparent;
+  transition: border 0.5s;
+  border-radius: 7px;
+}
+
+.gifbox:hover {
+  border: 3px solid #7170d2;
+  border-radius: 7px;
+}
+
+.gifbox .title-gif {
+  top: 15px;
+  color: #ffffff;
+  font-size: 1em;
+  left: 0px;
+  padding: 5px 16px;
+  position: absolute;
+  transition: 0.5s padding;
+  text-align: center;
+  margin: 0px;
+  text-shadow: 1px 1px 3px #282c34
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+/*Masonry Grid*/
+.grid-wrapper > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.grid-wrapper > div > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+.grid-wrapper {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: masonry;
+	grid-auto-rows: 200px;
+	grid-auto-flow: dense;
+}
+
+.btn-primary{
+  background: var(--violet)!important;
+  border: none!important;
+}
+
