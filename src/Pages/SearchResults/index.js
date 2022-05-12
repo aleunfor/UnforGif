@@ -5,12 +5,15 @@ import Spinner from 'components/Spinner';
 import useNearScreen from 'hooks/useNearScreen';
 import debounce from 'just-debounce-it'
 import Helmet from 'react-helmet';
+import SearchForm from 'components/SearchForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquarePollHorizontal } from '@fortawesome/free-solid-svg-icons'
 
 export default function SearchResults({ params }) {
-    const { keyword } = params;
-    const { loading, gifs, setPage } = useGifs({ keyword });
+    const { keyword, rating = 'g' } = params;
+    const { loading, gifs, setPage } = useGifs({ keyword, rating });
     const externalRef = useRef()
-    const {isNearScreen, fromRef} = useNearScreen({
+    const { isNearScreen, fromRef } = useNearScreen({
         externalRef: loading ? null : externalRef,
         once: false
     })
@@ -24,22 +27,25 @@ export default function SearchResults({ params }) {
     */
     const debounceHandleNextPage = useCallback(debounce(
         () => setPage(prevPage => prevPage + 1), 200
-    ),[setPage]) /* Las [] significa que la función se ejecuta 
+    ), [setPage]) /* Las [] significa que la función se ejecuta 
     cuando el componente se renderiza por primera vez*/
 
-    useEffect(function (){
-        if(isNearScreen) debounceHandleNextPage()
+    useEffect(function () {
+        if (isNearScreen) debounceHandleNextPage()
     }, [debounceHandleNextPage, isNearScreen])
 
     return <>
+        <header>
+            <SearchForm />
+        </header>
         {loading
             ? <Spinner />
             : <>
-            <Helmet>
-                <title>{title}</title>
-            </Helmet>
+                <Helmet>
+                    <title>{title}</title>
+                </Helmet>
                 <h3>
-                    {decodeURI(keyword).toLocaleUpperCase()}
+                <FontAwesomeIcon icon={faSquarePollHorizontal} /> {decodeURI(keyword).toLocaleUpperCase()}
                 </h3>
                 <ListOfGifs gifs={gifs} />
                 <div id="visor" ref={externalRef}></div>

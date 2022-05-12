@@ -1,19 +1,13 @@
-import { useCallback } from 'react'
-import { useLocation } from 'wouter';
 import ListOfGifs from 'components/ListOfGifs';
 import TrendingSearches from 'components/TrendingSearches';
 import { useGifs } from 'hooks/useGifs';
 import SearchForm from 'components/SearchForm';
 import { Helmet } from 'react-helmet';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function Home() {
     const { loading, gifs } = useGifs();
-    const [path, pushLocation] = useLocation()
-
-    const handleSubmit = useCallback(({ keyword }) => {
-        pushLocation(`/search/${keyword}`)
-    }, [pushLocation])
-
     
     //Mejor colocar un onSubmit (para hacer enter)
     return (
@@ -23,9 +17,11 @@ export default function Home() {
                 <meta name="description" content="App de tus Gifs Favoritos" />
             </Helmet>
 
-            <SearchForm onSubmit={handleSubmit} />
-
-            <h3>Última búsqueda</h3>
+            <header>
+                <SearchForm />
+            </header>
+            
+            <h3><FontAwesomeIcon icon={solid('clock')} />&nbsp; Última búsqueda</h3>
 
             <ListOfGifs gifs={gifs} />
 
