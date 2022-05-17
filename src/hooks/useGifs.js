@@ -6,7 +6,7 @@ const INITIAL_PAGE = 0
 
 
 export function useGifs({ keyword, rating } = { keyword: null }) {
-    //const [gifs, setGifs] = useState([]);
+    //const [gifs, setGifs] = useState([]); 
     const [loading, setLoading] = useState(false)
     const [loadingNextPage, setLoadingNextPage] = useState(false)
 
@@ -25,7 +25,7 @@ export function useGifs({ keyword, rating } = { keyword: null }) {
                 //Guardamos la keyword en el localStorage
                 localStorage.setItem('lastKeyword', keyword)
             })
-    }, [keyword, keywordToUse, rating,  setGifs]); // Teniendo dependencias vacias solo renderiza una vez el componente
+    }, [keyword, rating,  setGifs]); // Teniendo dependencias vacias solo renderiza una vez el componente
 
     useEffect(function () {
         if (page === INITIAL_PAGE) return
@@ -37,7 +37,7 @@ export function useGifs({ keyword, rating } = { keyword: null }) {
                 setGifs(prevGifs => prevGifs.concat(nextGifs))
                 setLoadingNextPage(false)
             })
-    },[keywordToUse, page, setGifs, rating])
+    },[page, setGifs, rating])
 
     return { loading, loadingNextPage, gifs, setPage}
 }

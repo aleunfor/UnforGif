@@ -17,7 +17,7 @@ export default function getGifs({
   limit = 15,
   keyword = "morty",
   page = 0,
-  rating
+  rating = 'g'
 } = {}) {
   const apiURL = `${API_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${
     page * limit

@@ -1,11 +1,35 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { useLocation } from 'wouter'
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r']
 
-function SearchForm() {
-    const [keyword, setKeyword] = useState('');
-    const [rating, setRating] = useState('g')
+function SearchForm({initialKeyword = '', initialRating}) {
+    //const [keyword, setKeyword] = useState(decodeURIComponent(initialKeyword))
+    //const [rating, setRating] = useState(initialRating)
+
+    // Reducer siempre tiene que devolver el siguiente estado
+    const reducer = (state, action) => {
+        if (action.type === 'update_keyword'){
+            return {
+                ...state,
+                keyword: action.payload
+            }
+        }
+
+        if (action.type === 'update_rating'){
+            return {
+                ...state,
+                rating: action.payload
+            }
+        }
+    }
+
+    const [state, dispatch] = useReducer(reducer, {
+        keyword:  decodeURIComponent(initialKeyword),
+        rating: initialRating     
+    })
+
+    const {keyword, rating} = state
 
     const [_, pushLocation] = useLocation()
 
@@ -16,11 +40,13 @@ function SearchForm() {
     }
 
     const handleChange = evt => {
-        setKeyword(evt.target.value)
+        // Asi sabemos que estado tenemos que actualizar
+        // Discriminamos en el reducer como actualizar el estado
+        dispatch({ type: 'update_keyword', payload: evt.target.value })
     }
 
     const handleChangeRating = evt => {
-        setRating(evt.target.value)
+        dispatch({ type: 'update_rating', payload: evt.target.value })
     }
 
     return (

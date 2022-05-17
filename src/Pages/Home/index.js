@@ -4,7 +4,7 @@ import { useGifs } from 'hooks/useGifs';
 import SearchForm from 'components/SearchForm';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function Home() {
     const { loading, gifs } = useGifs();

@@ -36,7 +36,7 @@ export default function SearchResults({ params }) {
 
     return <>
         <header>
-            <SearchForm />
+            <SearchForm initialKeyword={keyword} initialRating={rating} />
         </header>
         {loading
             ? <Spinner />
