@@ -7,6 +7,7 @@
   --blue: #1B1A75;
   --white:  #ffF;
   --violet: #9B99FF;
+  --yellow: #F0D867;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -95,6 +96,12 @@ img {
 .btn-primary{
   background: var(--violet)!important;
   border: none!important;
+}
+
+.btn-secondary{
+  background: var(--yellow)!important;
+  border: none!important;
+  color: var(--blue)!important;
 }
 
 .filter{

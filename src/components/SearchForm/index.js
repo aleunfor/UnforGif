@@ -1,35 +1,15 @@
-import React, { useReducer } from 'react';
 import { useLocation } from 'wouter'
+import useForm from './hook'
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r']
 
-function SearchForm({initialKeyword = '', initialRating}) {
+export default function SearchForm({ 
+    initialKeyword = '', 
+    initialRating = RATINGS[0] }) {
     //const [keyword, setKeyword] = useState(decodeURIComponent(initialKeyword))
     //const [rating, setRating] = useState(initialRating)
 
-    // Reducer siempre tiene que devolver el siguiente estado
-    const reducer = (state, action) => {
-        if (action.type === 'update_keyword'){
-            return {
-                ...state,
-                keyword: action.payload
-            }
-        }
-
-        if (action.type === 'update_rating'){
-            return {
-                ...state,
-                rating: action.payload
-            }
-        }
-    }
-
-    const [state, dispatch] = useReducer(reducer, {
-        keyword:  decodeURIComponent(initialKeyword),
-        rating: initialRating     
-    })
-
-    const {keyword, rating} = state
+    const { keyword, rating, updateKeyword, updateRating } = useForm({ initialKeyword, initialRating })
 
     const [_, pushLocation] = useLocation()
 
@@ -42,11 +22,12 @@ function SearchForm({initialKeyword = '', initialRating}) {
     const handleChange = evt => {
         // Asi sabemos que estado tenemos que actualizar
         // Discriminamos en el reducer como actualizar el estado
-        dispatch({ type: 'update_keyword', payload: evt.target.value })
+        updateKeyword(evt.target.value)
+
     }
 
     const handleChangeRating = evt => {
-        dispatch({ type: 'update_rating', payload: evt.target.value })
+        updateRating(evt.target.value)
     }
 
     return (
@@ -65,5 +46,3 @@ function SearchForm({initialKeyword = '', initialRating}) {
         </form>
     )
 }
-
-export default React.memo(SearchForm)

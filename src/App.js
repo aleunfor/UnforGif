@@ -3,6 +3,7 @@ import SearchResults from './Pages/SearchResults';
 import Home from './Pages/Home';
 import { Route, Switch } from 'wouter';
 import Detail from './Pages/Detail';
+import Header from 'components/Header';
 
 import { GifsContextProvider } from './context/GifsContext';
 import Helmet from 'react-helmet';
@@ -13,8 +14,8 @@ function App() {
       <Helmet>
         <link rel="canonical" href="https://unforgif.vercel.app/" />
       </Helmet>
+      <Header />
       <div className="container mt-3">
-        <a href="/"><h1 className='text-center mb-3'>UnforGif</h1></a>
         <GifsContextProvider>
           <Switch>
             <Route

@@ -16,10 +16,8 @@ export default function Home() {
                 <title>Home | UnforGif</title>
                 <meta name="description" content="App de tus Gifs Favoritos" />
             </Helmet>
-
-            <header>
-                <SearchForm />
-            </header>
+            
+            <SearchForm />
             
             <h3><FontAwesomeIcon icon={solid('clock')} />&nbsp; Última búsqueda</h3>
 
