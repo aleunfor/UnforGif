@@ -6,18 +6,18 @@ import { useLocation } from 'wouter'
 import useUser from 'hooks/useUser'
 
 export default function Login() {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [_, navigate] = useLocation()
     const { login, isLogged } = useUser()
 
-    useEffect(()=> {
+    useEffect(() => {
         if (isLogged) navigate('/')
     }, [isLogged, navigate])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        login()
+        login({ email, password })
         //navigate('/')
     }
 
@@ -32,15 +32,15 @@ export default function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label className="form-label text-light">Email address</label>
-                        <input type="email" className="form-control" 
-                        id="email" value={username}
-                        onChange={e => setUsername(e.target.value)} />
+                        <input type="email" className="form-control" name="email"
+                            id="email" value={email}
+                            onChange={e => setEmail(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <label className="form-label text-light">Password</label>
-                        <input type="password" className="form-control" 
-                        id="password" value={password}
-                        onChange={e => setPassword(e.target.value)} />
+                        <input type="password" className="form-control" name="password"
+                            id="password" value={password}
+                            onChange={e => setPassword(e.target.value)} />
                     </div>
                     <button type="submit" className="btn btn-primary">Sign in</button>
                 </form>
