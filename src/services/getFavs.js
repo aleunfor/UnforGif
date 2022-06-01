@@ -2,7 +2,8 @@ const ENDPOINT = 'http://localhost:3001'
 
 export default async function getFavs(){
     const jwt = window.sessionStorage.getItem('jwt')
-    return await fetch(`${ENDPOINT}/api/fav/getfavs`, {
+    const user = window.sessionStorage.getItem('user')
+    return await fetch(`${ENDPOINT}/api/fav/getfavs/${user}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",

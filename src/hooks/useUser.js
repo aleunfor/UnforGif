@@ -12,11 +12,13 @@ export default function useUser() {
         loginServices({ email, password })
             .then(token => {
                 window.sessionStorage.setItem('jwt', token);
+                window.sessionStorage.setItem('user', email);
                 setState({loading: true, error: false})
                 setJWT(token)
             })
             .catch(err => {
                 window.sessionStorage.removeItem('jwt');
+                window.sessionStorage.removeItem('user');
                 setState({loading: false, error: true})
                 console.error(err)
             })
@@ -32,6 +34,7 @@ export default function useUser() {
 
     const logout = useCallback(() => {
         window.sessionStorage.removeItem('jwt');
+        window.sessionStorage.removeItem('user');
         setJWT(null)
     }, [setJWT])
 

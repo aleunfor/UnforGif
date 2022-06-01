@@ -2,7 +2,8 @@ const ENDPOINT = 'http://localhost:3001'
 
 export default async function addFav({id}){
     const jwt = window.sessionStorage.getItem('jwt')
-    return await fetch(`${ENDPOINT}/api/fav/add/${id}`, {
+    const user = window.sessionStorage.getItem('user')
+    return await fetch(`${ENDPOINT}/api/fav/add/${id}/${user}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
