@@ -24,7 +24,7 @@ export default function Header() {
                 }
                 {
                     !isLogged 
-                        ? <a className="btn btn-primary">Sign-Up</a> : ''
+                        ? <a className="btn btn-primary" href="/register">Sign-Up</a> : ''
                 }
             </div>
         </header>

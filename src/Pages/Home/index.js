@@ -19,7 +19,7 @@ export default function Home() {
 
             <SearchForm />
 
-            <h3><FontAwesomeIcon icon={solid('clock')} />&nbsp; Última búsqueda</h3>
+            <h3><FontAwesomeIcon icon={solid('clock')} />&nbsp; Last Search</h3>
 
             <ListOfGifs gifs={gifs} />
 
