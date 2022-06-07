@@ -2,6 +2,7 @@ import { useCallback, useContext, useState } from 'react'
 import Context from 'context/UserContext'
 import loginServices from 'services/login'
 import addFavService from 'services/addFav'
+import registerServices from 'services/register'
 
 export default function useUser() {
     const { favs, token, setFavs, setJWT } = useContext(Context)
@@ -24,6 +25,18 @@ export default function useUser() {
             })
     }, [setJWT])
 
+    const register = useCallback(({name, email, password}) => {
+        setState({loading: true, error: false})
+        registerServices({name, email, password})
+        .then(
+            setState({loading: true, error: false})
+            )
+        .catch(err => {
+            setState({loading: false, error: true})
+            console.error(err)
+        })
+    }, [])
+
     const addFav = useCallback(({id}) => {
         addFavService({id})
         .then(setFavs)
@@ -42,7 +55,10 @@ export default function useUser() {
         isLogged: Boolean(token),
         isLoginLoading: state.loading,
         hasLoginError: state.error,
+        isRegisterLoading: state.loading,
+        hasRegisterError: state.error,
         login,
+        register,
         logout,
         addFav,
         favs

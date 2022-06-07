@@ -5,6 +5,7 @@ import Header from 'components/Header';
 import SearchResults from './Pages/SearchResults';
 import Home from './Pages/Home';
 import Login from './Pages/Login'
+import Register from 'Pages/Register';
 
 import { GifsContextProvider } from './context/GifsContext';
 import { UserContextProvider } from 'context/UserContext';
@@ -34,6 +35,9 @@ function App() {
               <Route
                 component={Detail}
                 path="/gif/:id" />
+              <Route
+                component={Register}
+                path="/register" />
               <Route
                 component={() => <h1>Error 404 :(</h1>}
                 path="/404" />
