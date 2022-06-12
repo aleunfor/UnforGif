@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost:3001'
+const {ENDPOINT} = require('./settings')
 
 export default async function getFavs(){
     const jwt = window.sessionStorage.getItem('jwt')

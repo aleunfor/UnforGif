@@ -26,10 +26,7 @@ export default function Login({onLogin}) {
 
     return (
         <>
-            <Helmet>
-                <title>Login | UnforGif</title>
-                <meta name="description" content="App de tus Gifs Favoritos" />
-            </Helmet>
+
             <div className="row col col-md-12 mx-auto pt-5 card-login">
                 <h2> <FontAwesomeIcon icon={solid('user')} /> Login</h2>
                 {isLoginLoading && <span className="text-white">Checking Credentials...</span>}

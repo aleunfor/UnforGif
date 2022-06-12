@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost:3001'
+const {ENDPOINT} = require('./settings')
 
 export default async function login({email, password}){
     return await fetch(`${ENDPOINT}/api/user/login`, {
