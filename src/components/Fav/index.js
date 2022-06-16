@@ -3,15 +3,19 @@ import { useState } from 'react'
 import LoginModal from 'components/LoginModal'
 import Login from 'components/Login'
 
-export default function Fav({ id }) {
-    const { isLogged, addFav, favs } = useUser()
+export default function Fav({ id, title }) {
+    const { isLogged, addFav, favs, removeFav } = useUser()
     const [showModal, setShowModal] = useState('')
 
     const isFaved = favs.some((idFav) => idFav === id)
 
     const handleClick = () => {
         if (!isLogged) return setShowModal('show')
-        addFav({ id })
+        if (!isFaved) {
+            addFav({ id, title })
+        } else {
+            removeFav({id})
+        }
     }
 
     const onClose = () => {

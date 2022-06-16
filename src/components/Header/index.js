@@ -1,10 +1,13 @@
 import useUser from 'hooks/useUser'
+import { Dropdown } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function Header() {
     //const isLogged = true
     const { isLogged, logout } = useUser()
 
-    const handleClick = e =>{
+    const handleClick = e => {
         e.preventDefault()
         logout()
     }
@@ -17,15 +20,26 @@ export default function Header() {
                 <h1>UnforGif</h1>
             </a>
 
-            <div className="col-md-3 text-end">
+            <div className="col-md-2 align-items-start">
                 {
-                    isLogged 
-                        ?  <div><h6>{user}</h6><button className="btn btn-secondary me-2" onClick={handleClick}>Logout</button></div>
-                        :  <a className="btn btn-secondary me-2" href="/login">Login</a>
-                        
+                    isLogged
+                        ? <Dropdown>
+                                <Dropdown.Toggle className='w-100' variant="primary" id="dropdown-variants-primary">
+                                    Menu
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Header><FontAwesomeIcon icon={solid('user')}/>&nbsp;{user}</Dropdown.Header>
+                                    <Dropdown.Divider />
+                                    <Dropdown.Item href="/favorites"><FontAwesomeIcon icon={solid('heart')}/>&nbsp;Favorites</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleClick}><FontAwesomeIcon icon={solid('arrow-right-from-bracket')}/>&nbsp;Logout</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        : <a className="btn btn-secondary me-2" href="/login">Login</a>
+
                 }
                 {
-                    !isLogged 
+                    !isLogged
                         ? <a className="btn btn-primary" href="/register">Sign-Up</a> : ''
                 }
             </div>

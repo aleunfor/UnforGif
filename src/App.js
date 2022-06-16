@@ -10,6 +10,7 @@ import Register from 'Pages/Register';
 import { GifsContextProvider } from './context/GifsContext';
 import { UserContextProvider } from 'context/UserContext';
 import Helmet from 'react-helmet';
+import Favorites from 'Pages/Favorites';
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
               <Route
                 component={Register}
                 path="/register" />
+              <Route
+                component={Favorites}
+                path="/favorites" />
               <Route
                 component={() => <h1>Error 404 :(</h1>}
                 path="/404" />
