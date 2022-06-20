@@ -17,3 +17,4 @@ export default async function getFavs(jwt){
         return favs
     })
 }
+
