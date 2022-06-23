@@ -8,7 +8,7 @@ export default async function login({email, password}){
         },
         body: JSON.stringify({email, password})
     }).then(res => {
-        if(!res.ok) throw new Error("Error Response")
+        if(!res.ok) throw new Error("Error Credentials")
         return res.json()
     }).then(res => {
         const { token } = res.data

@@ -54,7 +54,8 @@ export default function SocialButtons({ id, title }) {
 
             <PinterestShareButton
                 className={styleClass} 
-                url={url}
+                url={String(window.location)}
+                media={url}
                 windowWidth={1000}
                 windowHeight={730}>
                 <FontAwesomeIcon className={iconClass} icon={faPinterest} />
