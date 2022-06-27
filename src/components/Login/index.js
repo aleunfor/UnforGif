@@ -3,12 +3,14 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'wouter'
 import useUser from 'hooks/useUser'
+import ErrorAlert from 'components/ErrorAlert'
 
 export default function Login({onLogin}) {
+    const [showAlert, setShowAlert] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [_, navigate] = useLocation()
-    const { isLoginLoading, hasLoginError, login, isLogged } = useUser()
+    const { isLoginLoading, hasLoginError, msgError, login, isLogged} = useUser()
 
     useEffect(() => {
         if (isLogged) {
@@ -22,6 +24,12 @@ export default function Login({onLogin}) {
         login({ email, password })
         //navigate('/')
     }
+
+    useEffect(() => {
+        if(hasLoginError) {
+            setShowAlert(true)
+        }
+    }, [hasLoginError])
 
     return (
         <>
@@ -46,11 +54,8 @@ export default function Login({onLogin}) {
                         <button type="submit" className="btn btn-primary">Sign in</button>
                         <a className='nav-link text-white p-0 pt-3' href="/register">Register</a>
                     </form>}
-                {hasLoginError &&
-                    <div className="alert alert-warning alert-dismissible fade show mt-3" role="alert">
-                        <strong>Warning!</strong> Credentials are invalid!
-                        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>}
+                { hasLoginError && <ErrorAlert show={showAlert} error={msgError} /> }
+                
             </div>
         </>
     )

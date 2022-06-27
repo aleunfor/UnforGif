@@ -19,7 +19,7 @@ export function UserContextProvider({ children }) {
     useEffect(() => {
         if(!token) return setAllFavs([])
         getAllFavs({token}).then(setAllFavs)
-    }, [token, allFavs])
+    }, [token])
 
     return <Context.Provider value={{
         favs,

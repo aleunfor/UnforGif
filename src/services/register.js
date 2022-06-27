@@ -8,7 +8,10 @@ export default async function register({name, email, password}){
         },
         body: JSON.stringify({name, email, password})
     }).then(res => {
-        if(!res.ok) throw new Error("Error Response")
         return res.json()
+    }).then(res => {
+        if(res.data === "Email already registered"){
+            throw new Error("Email already registered")
+        }       
     })
 }

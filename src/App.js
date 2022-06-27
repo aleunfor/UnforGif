@@ -19,6 +19,7 @@ function App() {
         <Helmet>
           <link rel="canonical" href="https://unforgif.vercel.app/" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"></link>
+          <link rel="icon" type="image/png" href="favicon.ico"/>
         </Helmet>
         <Header />
         <div className="container mt-3">
