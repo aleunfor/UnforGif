@@ -1,10 +1,11 @@
 import { useLocation } from 'wouter'
 import useForm from './hook'
+import MediaQuery from 'react-responsive'
 
 const RATINGS = ['g', 'pg', 'pg-13', 'r']
 
-export default function SearchForm({ 
-    initialKeyword = '', 
+export default function SearchForm({
+    initialKeyword = '',
     initialRating = RATINGS[0] }) {
     //const [keyword, setKeyword] = useState(decodeURIComponent(initialKeyword))
     //const [rating, setRating] = useState(initialRating)
@@ -31,18 +32,39 @@ export default function SearchForm({
     }
 
     return (
-        <form onSubmit={handleSubmit} className="mx-auto w-75 d-flex mb-3">
-            <div className='input-group'>
-                <select onChange={handleChangeRating} className="btn-primary filter" value={rating}>
-                    <option disabled>Filter</option>
-                    {
-                        RATINGS.map((rating) =>
-                            <option key={rating}>{rating}</option>)
-                    }
-                </select>
-                <input onChange={handleChange} value={keyword} className="form-control me-2" type="text" placeholder="Buscar Gif..." aria-label="Buscar" />
-                <input className="btn btn-primary btn-buscar" type="submit" value="Buscar" />
-            </div>
-        </form>
+        <>
+            <MediaQuery minWidth={1224}>
+                <form onSubmit={handleSubmit} className="mx-auto w-75 d-flex mb-3">
+                    <div className='input-group'>
+                        <select onChange={handleChangeRating} className="btn-primary filter" value={rating}>
+                            <option disabled>Filter</option>
+                            {
+                                RATINGS.map((rating) =>
+                                    <option key={rating}>{rating}</option>)
+                            }
+                        </select>
+                        <input onChange={handleChange} value={keyword} className="form-control me-2" type="text" placeholder="Buscar Gif..." aria-label="Buscar" />
+                        <input className="btn btn-primary btn-buscar" type="submit" value="Buscar" />
+                    </div>
+                </form>
+            </MediaQuery>
+            <MediaQuery maxWidth={1224}>
+                <form onSubmit={handleSubmit} className="mx-auto w-100 d-flex mb-3">
+                    <div className='input-group'>
+                        <select onChange={handleChangeRating} className="btn-primary filter" value={rating}>
+                            <option disabled>Filter</option>
+                            {
+                                RATINGS.map((rating) =>
+                                    <option key={rating}>{rating}</option>)
+                            }
+                        </select>
+                        <input onChange={handleChange} value={keyword} className="form-control me-2" type="text" placeholder="Buscar Gif..." aria-label="Buscar" />
+                        <input className="btn btn-primary btn-buscar" type="submit" value="Buscar" />
+                    </div>
+                </form>
+            </MediaQuery>
+        </>
+
+
     )
 }

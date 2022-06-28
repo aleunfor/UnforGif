@@ -186,3 +186,11 @@ img {
   border: none !important;
   outline: none;
 }
+
+.menu-mobile{
+  z-index: 1000;
+}
+
+.icons-menu{
+  color: var(--blue);
+}
