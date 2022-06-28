@@ -18,7 +18,7 @@ export default function Header() {
     return (
         <header className="container d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <a href="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img className='img-fluid' width="80%" src="/logo-unforgif.png" alt="UnforGif" />
+                <img className='img-fluid text-center' width="250px" src="/logo-unforgif.png" alt="UnforGif" />
             </a>
 
             <div className="col-md-2 align-items-start">
