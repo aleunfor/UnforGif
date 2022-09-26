@@ -63,30 +63,16 @@ jobs:
       # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
       - name: "Example show SonarQube Quality Gate Status value"
         run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
-
-  depchecktest:
+  
+  dependency-check:
+    name: Check
     runs-on: ubuntu-latest
-    name: depecheck_test
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Build project with Maven
-        run: mvn clean install
-      - name: Depcheck
-        uses: dependency-check/Dependency-Check_Action@main
-        env:
-          # actions/setup-java@v1 changes JAVA_HOME so it needs to be reset to match the depcheck image
-          JAVA_HOME: /opt/jdk
-        id: Depcheck
+      - uses: Marcisbee/dependency-check-action
         with:
-          project: "test"
-          path: "."
-          format: "HTML"
-          args: >
-            --failOnCVSS 7
-            --enableRetired
-      - name: Upload Test results
-        uses: actions/upload-artifact@master
-        with:
-          name: Depcheck report
-          path: ${{github.workspace}}/reports
+          PATH: "/projects/server"
+          IGNORE_PACKAGES:
+            - @babel/core
+          IGNORE_FILES:
+            - .test.js
+            - /customfile.js
