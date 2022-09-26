@@ -17,7 +17,6 @@ export default async function addFav({ id, title }) {
     })
     .then((res) => {
       const { favs } = res;
-      console.log("password: 12345678");
       return favs;
     });
 }
