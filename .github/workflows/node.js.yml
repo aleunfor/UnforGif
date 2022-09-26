@@ -55,7 +55,7 @@ jobs:
       with: 
         args: >
           -Dsonar.projectKey=unforgif-test
-          -Dsonar.sources=.
+          -Dsonar.sources=src
           -Dsonar.dependencyCheck.jsonReportPath=${WORKSPACE}/dependency-check-report.json
           -Dsonar.dependencyCheck.htmlReportPath=${WORKSPACE}/dependency-check-report.html
       # Force to fail step after specific time.
