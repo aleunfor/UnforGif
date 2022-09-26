@@ -38,9 +38,12 @@ jobs:
         # Disabling shallow clone is recommended for improving relevancy of reporting.
         fetch-depth: 0
 
-    # Triggering SonarQube analysis as results of it are required by Quality Gate check.
+    # Trigge ring SonarQube analysis as results of it are required by Quality Gate check.
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
+      with: 
+        args: >
+          -Dsonar.projectKey=unforgif-test
       env:
         SONAR_TOKEN: ${{ secrets.SECRET_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -49,6 +52,9 @@ jobs:
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@master
+      with: 
+        args: >
+          -Dsonar.projectKey=unforgif-test
       # Force to fail step after specific time.
       timeout-minutes: 5
       env:
