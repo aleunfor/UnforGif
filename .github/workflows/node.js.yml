@@ -47,7 +47,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Setup sonarqube
-      uses: warchant/setup-sonar-scanner@v3
+    - uses: warchant/setup-sonar-scanner@v3
     - name: Run sonarqube
       run: sonar-scanner
           -Dsonar.organization=1corp 
