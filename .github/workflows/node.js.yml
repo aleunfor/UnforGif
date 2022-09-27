@@ -41,23 +41,23 @@ jobs:
         with:
           commit_message: "build(detect-secrets): Commit the newly-generated .secrets.baseline file"
 
-  sonarqube:
+  sonarQubeTrigger:
     name: SonarQube Trigger
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Setup sonarqube
-    - uses: warchant/setup-sonar-scanner@v3
+      uses: warchant/setup-sonar-scanner@v3
     - name: Run sonarqube
       run: sonar-scanner
-          -Dsonar.organization=1corp 
-          -Dsonar.projectKey=unforgif-test
-          -Dsonar.sources=$GITHUB_WORKSPACE 
-          -Dsonar.host.url=${{ secrets.SONAR_URL }} 
-          -Dsonar.login=${{ secrets.SECRET_TOKEN }}
-          -sonar.sources=.
-          -Dsonar.dependencyCheck.jsonReportPath=/dependency-check-report.json
-          -Dsonar.dependencyCheck.htmlReportPath=/dependency-check-report.html
+           -Dsonar.organization=1corp 
+           -Dsonar.projectKey=Claro-Club-Mobile 
+           -Dsonar.sources=$GITHUB_WORKSPACE 
+           -Dsonar.host.url=${{ secrets.SONAR_URL }} 
+           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+           -sonar.sources=.
+           -Dsonar.dependencyCheck.jsonReportPath=/dependency-check-report.json
+           -Dsonar.dependencyCheck.htmlReportPath=/dependency-check-report.html
 
       # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
