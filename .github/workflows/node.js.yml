@@ -54,7 +54,6 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@master
         with:
           args: >
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
             -Dsonar.projectKey=unforgif-test
         env:
           SONAR_TOKEN: ${{ secrets.SECRET_TOKEN }}
