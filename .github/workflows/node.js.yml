@@ -28,14 +28,14 @@ jobs:
       - run: npm build --if-present
       - run: npm test
       
-  secretscan:
+  check-secrets:
+    name: Checking for Secrets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: max/secret-scan@master
-        with:
-          include_path: 'configuration/include_paths.txt'
-          exclude_path: 'configuration/exclude_paths.txt'
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Secret Scanner
+        uses: secret-scanner/action@0.0.2
 
   sonarqube:
     runs-on: ubuntu-latest
