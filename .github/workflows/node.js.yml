@@ -50,11 +50,10 @@ jobs:
       uses: warchant/setup-sonar-scanner@v3
     - name: Run sonarqube
       run: sonar-scanner
-           -Dsonar.organization=1corp 
-           -Dsonar.projectKey=Claro-Club-Mobile 
+           -Dsonar.projectKey=unforgif-test
            -Dsonar.sources=$GITHUB_WORKSPACE 
            -Dsonar.host.url=${{ secrets.SONAR_URL }} 
-           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+           -Dsonar.login=${{ secrets.SECRET_TOKEN }}
            -Dsonar.sources=.
            -Dsonar.dependencyCheck.jsonReportPath=/dependency-check-report.json
            -Dsonar.dependencyCheck.htmlReportPath=/dependency-check-report.html
