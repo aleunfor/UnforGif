@@ -42,22 +42,22 @@ jobs:
           commit_message: "build(detect-secrets): Commit the newly-generated .secrets.baseline file"
 
   sonarqube:
+    name: SonarQube Trigger
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting.
-          fetch-depth: 0
-
-      # Trigge ring SonarQube analysis as results of it are required by Quality Gate check.
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        with:
-          args: >
-            -Dsonar.projectKey=unforgif-test
-        env:
-          SONAR_TOKEN: ${{ secrets.SECRET_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    - uses: actions/checkout@master
+    - name: Setup sonarqube
+      uses: warchant/setup-sonar-scanner@v3
+    - name: Run sonarqube
+      run: sonar-scanner
+          -Dsonar.organization=1corp 
+          -Dsonar.projectKey=unforgif-test
+          -Dsonar.sources=$GITHUB_WORKSPACE 
+          -Dsonar.host.url=${{ secrets.SONAR_URL }} 
+          -Dsonar.login=${{ secrets.SECRET_TOKEN }}
+          -sonar.sources=.
+          -Dsonar.dependencyCheck.jsonReportPath=/dependency-check-report.json
+          -Dsonar.dependencyCheck.htmlReportPath=/dependency-check-report.html
 
       # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
