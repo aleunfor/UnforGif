@@ -75,8 +75,8 @@ jobs:
       # Optionally you can use the output from the Quality Gate in another step.
       # The possible outputs of the `quality-gate-status` variable are `PASSED`, `WARN` or `FAILED`.
       - name: "SonarQube Quality Gate Status value"
-        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"
-    
+        run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}!"
+
   depchecktest:
     runs-on: ubuntu-latest
     name: depecheck_test
@@ -89,14 +89,14 @@ jobs:
         uses: dependency-check/Dependency-Check_Action@main
         id: Depcheck
         with:
-          project: 'test'
-          path: '.'
-          format: 'HTML'    
+          project: "test"
+          path: "."
+          format: "HTML"
           args: >
             --failOnCVSS 7
             --enableRetired
       - name: Upload Test results
         uses: actions/upload-artifact@master
         with:
-           name: Depcheck report
-           path: ${{github.workspace}}/reports
+          name: Depcheck report
+          path: ${{github.workspace}}/reports
